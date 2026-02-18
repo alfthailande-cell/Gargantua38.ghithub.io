@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gargantua - Restaurant Montagnard à Villard de Lans</title>
+    <style>
+        /* Variables et styles généraux */
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #CD853F;
+            --light-color: #F5F5DC;
+            --dark-color: #3E2723;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* En-tête fixe */
+        header {
+            background-color: var(--primary-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Section Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+        
+        /* Sections générales */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        /* Section À propos */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Section Menu */
+        .menu {
+            background-color: var(--white);
+        }
+        
+        .menu-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-category {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .menu-category:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .menu-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--accent-color);
+        }
+        
+        .menu-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-weight: bold;
+            display: block;
+        }
+        
+        .item-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Section Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Pied de page */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête fixe -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">GARGANTUA</a>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Gargantua</h1>
+            <p>Restaurant Montagnard à Villard de Lans</p>
+            <p>Spécialités dauphinoises à volonté</p>
+            <a href="#menu" class="btn">Découvrir notre carte</a>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="about">
+        <div class="container">
+            <h2 class="section-title">À propos de nous</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Bienvenue au restaurant Gargantua, situé au cœur de Villard de Lans, station de ski La Côte 2000. Notre établissement vous accueille dans une ambiance chaleureuse et authentique, typique des montagnes du Vercors.</p>
+                    <p>Nous mettons un point d'honneur à travailler avec des produits frais et locaux pour vous proposer une cuisine savoureuse et généreuse, entièrement faite maison. Notre concept unique : toutes nos spécialités sont servies à volonté !</p>
+                    <p>Venez déguster nos pizzas cuites au feu de bois, notre célèbre tartiflette, la croziflette, les Dios de Savoie, le gratin dauphinois et bien d'autres spécialités de notre région.</p>
+                    <p>Après une journée de ski ou de randonnée, notre restaurant est l'endroit idéal pour vous réchauffer et vous régaler en famille ou entre amis.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Intérieur du restaurant Gargantua">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Menu -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">Notre Carte</h2>
+            <div class="menu-categories">
+                <div class="menu-category">
+                    <h3>Spécialités Montagnardes</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Tartiflette</span>
+                        <span class="item-description">Pommes de terre, lardons, oignons et reblochon fondant</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Croziflette</span>
+                        <span class="item-description">Crozet de Savoie, lardons, oignons et reblochon</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gratin Dauphinois</span>
+                        <span class="item-description">Pommes de terre, crème fraîche et noix de muscade</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Dios de Savoie</span>
+                        <span class="item-description">Spécialité fromagère savoyarde</span>
+                    </div>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Pizzas Maison</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Montagnarde</span>
+                        <span class="item-description">Reblochon, pommes de terre, lardons et crème</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Raclette</span>
+                        <span class="item-description">Fromage à raclette, pommes de terre, charcuterie</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Forestière</span>
+                        <span class="item-description">Champignons, lardons, fromage et crème</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Dauphinoise</span>
+                        <span class="item-description">Spécialité régionale avec gratin dauphinois</span>
+                    </div>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Desserts Maison</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Fondue au Chocolat</span>
+                        <span class="item-description">À partager avec des fruits frais</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Tarte aux Myrtilles</span>
+                        <span class="item-description">Myrtilles des montagnes du Vercors</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Crêpes Suzette</span>
+                        <span class="item-description">Préparées à la flambée</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Glace Maison</span>
+                        <span class="item-description">Saveurs variées selon la saison</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <p><strong>Toutes nos spécialités sont servies à volonté !</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact & Réservations</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informations</h3>
+                    <p><strong>Adresse :</strong> 18 allée des chevreuils, 38250 Villard de Lans</p>
+                    <p><strong>Téléphone :</strong> 04 76 95 XX XX</p>
+                    <p><strong>Email :</strong> contact@gargantua-villard.com</p>
+                    <p><strong>Horaires :</strong></p>
+                    <p>Lundi au Dimanche : 11h30 - 14h30 / 18h30 - 22h30</p>
+                    <p>Ouvert toute l'année, été comme hiver</p>
+                    <p>Station de ski : La Côte 2000</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Nous contacter</h3>
+                    <form>
+                        <input type="text" placeholder="Votre nom" required>
+                        <input type="email" placeholder="Votre email" required>
+                        <input type="tel" placeholder="Votre téléphone">
+                        <textarea placeholder="Votre message" rows="5" required></textarea>
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gargantua</h3>
+                    <p>Restaurant montagnard à Villard de Lans</p>
+                    <p>Spécialités dauphinoises à volonté</p>
+                    <p>Produits frais et fait maison</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <a href="#accueil">Accueil</a>
+                    <a href="#apropos">À propos</a>
+                    <a href="#menu">Menu</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>18 allée des chevreuils</p>
+                    <p>38250 Villard de Lans</p>
+                    <p>04 76 95 XX XX</p>
+                    <p>contact@gargantua-villard.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="TikTok">TT</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Restaurant Gargantua - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
